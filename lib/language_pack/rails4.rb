@@ -66,6 +66,10 @@ WARNING
     "tmp/cache/assets"
   end
 
+  def node_modules_cache
+    "node_modules"
+  end
+
   def cleanup
     super
     return if assets_compile_enabled?
@@ -88,6 +92,7 @@ WARNING
 
         @cache.load_without_overwrite public_assets_folder
         @cache.load default_assets_cache
+        @cache.load node_modules_cache
 
         precompile.invoke(env: rake_env)
 
@@ -101,6 +106,7 @@ WARNING
           cleanup_assets_cache
           @cache.store public_assets_folder
           @cache.store default_assets_cache
+          @cache.store node_modules_cache
         else
           precompile_fail(precompile.output)
         end
