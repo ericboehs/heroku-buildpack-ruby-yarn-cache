@@ -107,6 +107,7 @@ WARNING
           @cache.store public_assets_folder
           @cache.store default_assets_cache
           @cache.store node_modules_cache
+          FileUtils.remove_dir(node_modules_cache, true)
         else
           precompile_fail(precompile.output)
         end
